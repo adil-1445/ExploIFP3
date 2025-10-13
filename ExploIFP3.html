@@ -693,6 +693,12 @@
         <img src="RessourcesIMG/RIASEC.png" alt="Aperçu RIASEC" onerror="this.style.display='none';">
       </div>
     </a>
+    <a href="#" onclick="return showActivity('fp360');" data-icon="🧭" style="position: relative;">
+      FP360
+      <div class="resource-preview">
+        <img src="RessourcesIMG/FP360.png" alt="Aperçu FP360" onerror="this.style.display='none';">
+      </div>
+    </a>
     <a href="#" onclick="return showActivity('systeme-scolaire');" data-icon="🏫" style="position: relative;">
       Système scolaire
       <div class="resource-preview">
@@ -973,6 +979,66 @@
             </div>
         </div>
 
+        <div id="activite-fp360" class="activity-view" style="display:none;">
+            <div class="metiers-header">
+                <h2>Activité FP360</h2>
+                <p>Plonge dans des milieux de travail grâce à des vidéos immersives pour enrichir ta réflexion sur la formation professionnelle.</p>
+            </div>
+            <button class="download-button" onclick="downloadActivityPdf('fp360')">
+                <span>⬇️</span>Télécharger la fiche PDF
+            </button>
+            <div class="activity-content">
+                <div class="activity-section">
+                    <h3>Objectifs pédagogiques</h3>
+                    <ul>
+                        <li>Vivre une immersion virtuelle dans différents environnements de travail.</li>
+                        <li>Repérer les éléments observés qui rejoignent ses intérêts, ses forces et ses valeurs.</li>
+                        <li>Comparer les conditions et exigences des métiers explorés pour alimenter son projet.</li>
+                    </ul>
+                </div>
+                <div class="activity-section">
+                    <h3>Compétences visées</h3>
+                    <ul>
+                        <li>Compétence 1&nbsp;: Se connaître pour faire des choix éclairés.</li>
+                        <li>Compétence 2&nbsp;: Explorer le monde scolaire et professionnel.</li>
+                        <li>Compétence 3&nbsp;: Communiquer sa réflexion et ses découvertes.</li>
+                    </ul>
+                </div>
+                <div class="activity-section">
+                    <h3>Durée</h3>
+                    <ul>
+                        <li>1 période de 60 minutes.</li>
+                    </ul>
+                </div>
+                <div class="activity-section">
+                    <h3>Matériel requis</h3>
+                    <ul>
+                        <li>Visionneuses 360° (casques VR ou lunettes en carton) pour la classe.</li>
+                        <li>Appareils numériques avec accès aux vidéos FP360.</li>
+                        <li>Écouteurs individuels.</li>
+                        <li>Fiche d'observation FP360 (format papier ou numérique).</li>
+                    </ul>
+                </div>
+                <div class="activity-section">
+                    <h3>Déroulement proposé</h3>
+                    <ol>
+                        <li><strong>Introduction (10 min)</strong>&nbsp;: Présentation de l'outil FP360 et discussion sur les métiers qui seront visités virtuellement.</li>
+                        <li><strong>Immersion (25 min)</strong>&nbsp;: Les élèves visionnent deux à trois capsules 360° en prenant des notes sur leurs observations.</li>
+                        <li><strong>Analyse guidée (15 min)</strong>&nbsp;: En dyades, ils comparent leurs notes et identifient les compétences observées dans chaque milieu.</li>
+                        <li><strong>Retour collectif (10 min)</strong>&nbsp;: Mise en commun des découvertes et liens avec les parcours de formation possibles.</li>
+                    </ol>
+                </div>
+                <div class="activity-section">
+                    <h3>Évaluation</h3>
+                    <ul>
+                        <li>Fiche d'observation complétée et remise.</li>
+                        <li>Qualité des liens faits entre les métiers observés et son profil personnel.</li>
+                        <li>Participation active aux échanges collectifs.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <div id="activite-systeme-scolaire" class="activity-view" style="display:none;">
             <div class="metiers-header">
                 <h2>Activité Système scolaire</h2>
@@ -1164,6 +1230,40 @@
 - Engagement dans l'élaboration du plan d'action.
     </script>
 
+    <script type="text/plain" id="markdown-fp360">
+# Activité FP360
+
+## Objectifs pédagogiques
+- Vivre une immersion virtuelle dans différents environnements de travail.
+- Repérer les éléments observés qui rejoignent ses intérêts, ses forces et ses valeurs.
+- Comparer les conditions et exigences des métiers explorés pour alimenter son projet d'orientation.
+
+## Compétences visées
+- Compétence 1 : Se connaître pour faire des choix éclairés.
+- Compétence 2 : Explorer le monde scolaire et professionnel.
+- Compétence 3 : Communiquer sa réflexion et ses découvertes.
+
+## Durée
+- 1 période de 60 minutes.
+
+## Matériel requis
+- Visionneuses 360° (casques VR ou lunettes en carton).
+- Appareils numériques avec accès aux vidéos FP360.
+- Écouteurs individuels.
+- Fiche d'observation FP360 (papier ou numérique).
+
+## Déroulement proposé
+1. **Introduction (10 min)** : Présentation de l'outil FP360 et des métiers qui seront visités virtuellement.
+2. **Immersion (25 min)** : Visionnement de deux à trois capsules 360° en remplissant la fiche d'observation.
+3. **Analyse guidée (15 min)** : Discussion en dyades pour comparer les observations et dégager les compétences mobilisées.
+4. **Retour collectif (10 min)** : Mise en commun des découvertes et liens avec les parcours de formation professionnelle.
+
+## Évaluation
+- Fiche d'observation complétée et remise.
+- Qualité des liens faits entre les métiers observés et son profil personnel.
+- Participation active aux échanges collectifs.
+    </script>
+
     <script type="text/plain" id="markdown-systeme-scolaire">
 # Activité Système scolaire
 
@@ -1207,6 +1307,7 @@
             "20t1-secteurs": { id: "activite-20t1-secteurs", title: "Activité 20T1 secteurs" },
             "mythes-et-realites": { id: "activite-mythes-et-realites", title: "Activité Mythes et réalités" },
             "riasec": { id: "activite-riasec", title: "Activité RIASEC" },
+            "fp360": { id: "activite-fp360", title: "Activité FP360" },
             "systeme-scolaire": { id: "activite-systeme-scolaire", title: "Activité Système scolaire" }
         };
 
@@ -1238,6 +1339,13 @@
                 filename: "Activite_RIASEC.pdf",
                 title: "Activité RIASEC",
                 inlineMarkdownId: "markdown-riasec"
+            },
+            "fp360": {
+                markdownPath: "ActivteORI/360FP/fiche-pedagogique.md",
+                pdfPath: "ActivteORI/360FP/FichePedagogique360FP.pdf",
+                filename: "Activite_FP360.pdf",
+                title: "Activité FP360",
+                inlineMarkdownId: "markdown-fp360"
             },
             "systeme-scolaire": {
                 markdownPath: "ActivteORI/Systeme-scolaire/fiche-pedagogique.md",
