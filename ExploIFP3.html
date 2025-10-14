@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>(AEP) (DEP) (ASP) (DEC)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js" integrity="sha512-GSULzbXn1E7W6bw1VDOBigT0bDmyNkY+Po1WczwbjAMuHtXXyVKkD1pkk9Vc0zIGIXUxSg+P8Dc6VVViTHCLcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-y54hY+pN+9ZC80ZMwGg7FpC18JNpDutLCRa14Q6gttxyPjdvVSd1n9YmqmUgYISpJq3xZbC4YV0CP0ztvyFPbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         * {
             margin: 0;
@@ -312,58 +310,45 @@
             font-size: 1.2em;
         }
 
-        .pdf-export-container {
-            position: fixed;
-            left: -9999px;
-            top: 0;
-            width: 210mm;
-            background: white;
-            padding: 20px;
-            color: #1f2933;
-            font-family: 'Arial', sans-serif;
-            line-height: 1.5;
-        }
-
-        .pdf-export-container h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #4c51bf;
-        }
-
-        .pdf-export-container h2 {
-            font-size: 18px;
+        .pdf-viewer {
+            width: 100%;
+            height: calc(100vh - 180px);
+            min-height: 600px;
             margin-top: 20px;
-            margin-bottom: 10px;
-            color: #2c5282;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            background: #f4f6fb;
         }
 
-        .pdf-export-container ul,
-        .pdf-export-container ol {
-            margin-left: 20px;
+        .pdf-viewer iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
-        .pdf-export-container p {
-            margin-bottom: 10px;
+        @media (max-width: 768px) {
+            .pdf-viewer {
+                height: calc(100vh - 140px);
+                min-height: 400px;
+            }
         }
 
-        .activity-section + .activity-section {
-            margin-top: 20px;
+        .pdf-viewer-fallback {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #2c3e50;
         }
 
-        .activity-section h3 {
+        .pdf-viewer-fallback a {
             color: #667eea;
-            margin-bottom: 10px;
-            font-size: 1.2em;
+            font-weight: 600;
+            text-decoration: none;
         }
 
-        .activity-section ul,
-        .activity-section ol {
-            margin-left: 20px;
-            padding-left: 10px;
-        }
-
-        .activity-section li {
-            margin-bottom: 6px;
+        .pdf-viewer-fallback a:hover {
+            text-decoration: underline;
         }
 
         .metiers-header {
@@ -757,51 +742,12 @@
                 <span>⬇️</span>Fiche Pédagogique Mon Avatar.pdf
             </button>
             <div class="activity-content">
-                <div class="activity-section">
-                    <h3>Objectifs pédagogiques</h3>
-                    <ul>
-                        <li>Amener l'élève à dresser un portrait de ses forces, intérêts et valeurs.</li>
-                        <li>Favoriser l'expression de soi par un médium créatif.</li>
-                        <li>Relier les traits personnels aux exigences des métiers explorés.</li>
-                    </ul>
+                <div class="pdf-viewer">
+                    <iframe src="ActivteORI/Mon-Avatar/FichePedagogiqueMonAvatar.pdf" title="Fiche pédagogique Mon Avatar" loading="lazy"></iframe>
                 </div>
-                <div class="activity-section">
-                    <h3>Compétences visées</h3>
-                    <ul>
-                        <li>Compétence 1&nbsp;: Se connaître pour faire des choix éclairés.</li>
-                        <li>Compétence 3&nbsp;: Communiquer sa démarche d'orientation.</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Durée</h3>
-                    <ul>
-                        <li>1 période de 75 minutes.</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Matériel requis</h3>
-                    <ul>
-                        <li>Ordinateurs ou tablettes avec l'application de création d'avatar.</li>
-                        <li>Fiche réflexive imprimée ou numérique.</li>
-                        <li>Casques d'écoute (optionnel).</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Déroulement proposé</h3>
-                    <ol>
-                        <li><strong>Introduction (10 min)</strong>&nbsp;: Discussion sur l'importance de se connaître avant d'explorer les métiers.</li>
-                        <li><strong>Création de l'avatar (30 min)</strong>&nbsp;: Les élèves conçoivent un avatar qui illustre leurs forces et leurs intérêts.</li>
-                        <li><strong>Analyse guidée (20 min)</strong>&nbsp;: À partir d'une grille fournie, ils associent chaque élément choisi à un atout personnel.</li>
-                        <li><strong>Partage (15 min)</strong>&nbsp;: Présentation de l'avatar à un pair et rétroaction constructive.</li>
-                    </ol>
-                </div>
-                <div class="activity-section">
-                    <h3>Évaluation</h3>
-                    <ul>
-                        <li>Grille d'autoévaluation sur la connaissance de soi.</li>
-                        <li>Qualité des liens établis entre l'avatar et les forces personnelles.</li>
-                    </ul>
-                </div>
+                <p class="pdf-viewer-fallback">
+                    Si le document ne s'affiche pas, <a href="ActivteORI/Mon-Avatar/FichePedagogiqueMonAvatar.pdf" target="_blank" rel="noopener">téléchargez-le en format PDF</a>.
+                </p>
             </div>
         </div>
 
@@ -814,52 +760,12 @@
                 <span>⬇️</span>Fiche Pédagogique 20T1 secteurs.pdf
             </button>
             <div class="activity-content">
-                <div class="activity-section">
-                    <h3>Objectifs pédagogiques</h3>
-                    <ul>
-                        <li>Explorer les secteurs de formation professionnelle offerts dans la région.</li>
-                        <li>Relier les secteurs d'intérêt aux talents et aux aspirations des élèves.</li>
-                        <li>Développer la capacité à utiliser des outils numériques de recherche d'information.</li>
-                    </ul>
+                <div class="pdf-viewer">
+                    <iframe src="ActivteORI/20T1-secteurs/FichePedagogique20T1secteurs.pdf" title="Fiche pédagogique 20T1 secteurs" loading="lazy"></iframe>
                 </div>
-                <div class="activity-section">
-                    <h3>Compétences visées</h3>
-                    <ul>
-                        <li>Compétence 1&nbsp;: Se connaître et explorer le monde du travail.</li>
-                        <li>Compétence 2&nbsp;: S'orienter en utilisant des ressources numériques fiables.</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Durée</h3>
-                    <ul>
-                        <li>2 périodes de 60 minutes.</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Matériel requis</h3>
-                    <ul>
-                        <li>Appareil numérique (ordinateur ou tablette) avec accès à Internet.</li>
-                        <li>Fiches de prise de notes pour chaque secteur.</li>
-                        <li>Tableau ou support collaboratif en ligne (ex.&nbsp;: Jamboard, Padlet).</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Déroulement proposé</h3>
-                    <ol>
-                        <li><strong>Mise en situation (10 min)</strong>&nbsp;: Présenter les secteurs de formation disponibles sur la plateforme et rappeler les liens avec le projet personnel de l'élève.</li>
-                        <li><strong>Exploration guidée (40 min)</strong>&nbsp;: En équipes, les élèves consultent les ressources en ligne et remplissent leur fiche sectorielle.</li>
-                        <li><strong>Mise en commun (20 min)</strong>&nbsp;: Chaque équipe partage un secteur découvert et souligne trois faits marquants.</li>
-                        <li><strong>Retour réflexif (10 min)</strong>&nbsp;: Les élèves identifient les secteurs qui les interpellent et justifient leur choix dans leur journal de bord.</li>
-                    </ol>
-                </div>
-                <div class="activity-section">
-                    <h3>Évaluation</h3>
-                    <ul>
-                        <li>Observation des échanges durant l'exploration.</li>
-                        <li>Qualité des fiches remplies.</li>
-                        <li>Autoévaluation des apprentissages.</li>
-                    </ul>
-                </div>
+                <p class="pdf-viewer-fallback">
+                    Si le document ne s'affiche pas, <a href="ActivteORI/20T1-secteurs/FichePedagogique20T1secteurs.pdf" target="_blank" rel="noopener">téléchargez-le en format PDF</a>.
+                </p>
             </div>
         </div>
 
@@ -872,52 +778,12 @@
                 <span>⬇️</span>Fiche Pédagogique Mythes Et Realites.pdf
             </button>
             <div class="activity-content">
-                <div class="activity-section">
-                    <h3>Objectifs pédagogiques</h3>
-                    <ul>
-                        <li>Démystifier des croyances entourant la formation professionnelle et les métiers.</li>
-                        <li>Développer l'esprit critique face aux sources d'information.</li>
-                        <li>Encourager les échanges et l'écoute active au sein du groupe.</li>
-                    </ul>
+                <div class="pdf-viewer">
+                    <iframe src="ActivteORI/Mythes-Et-Realites/FichePedagogiqueMythesEtRealites.pdf" title="Fiche pédagogique Mythes et réalités" loading="lazy"></iframe>
                 </div>
-                <div class="activity-section">
-                    <h3>Compétences visées</h3>
-                    <ul>
-                        <li>Compétence 2&nbsp;: Explorer le monde scolaire et professionnel.</li>
-                        <li>Compétence 3&nbsp;: Construire son plan d'action professionnel.</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Durée</h3>
-                    <ul>
-                        <li>2 périodes de 50 minutes.</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Matériel requis</h3>
-                    <ul>
-                        <li>Cartes «&nbsp;mythe ou réalité&nbsp;» imprimées ou numériques.</li>
-                        <li>Accès à des ressources de validation (sites Web, fiches métiers, témoignages vidéo).</li>
-                        <li>Tableau blanc ou outil numérique collaboratif.</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Déroulement proposé</h3>
-                    <ol>
-                        <li><strong>Activation des connaissances (10 min)</strong>&nbsp;: Brainstorming sur les idées préconçues à propos de la formation professionnelle.</li>
-                        <li><strong>Atelier en équipes (40 min)</strong>&nbsp;: Chaque équipe pige des cartes et détermine si l'énoncé est un mythe ou une réalité en justifiant sa réponse avec des sources.</li>
-                        <li><strong>Plénière (30 min)</strong>&nbsp;: Mise en commun et rectification des mythes les plus persistants.</li>
-                        <li><strong>Synthèse individuelle (20 min)</strong>&nbsp;: Les élèves rédigent trois apprentissages clés et une question qu'ils souhaitent approfondir.</li>
-                    </ol>
-                </div>
-                <div class="activity-section">
-                    <h3>Évaluation</h3>
-                    <ul>
-                        <li>Qualité des justifications présentées.</li>
-                        <li>Participation active aux discussions.</li>
-                        <li>Pertinence de la synthèse individuelle.</li>
-                    </ul>
-                </div>
+                <p class="pdf-viewer-fallback">
+                    Si le document ne s'affiche pas, <a href="ActivteORI/Mythes-Et-Realites/FichePedagogiqueMythesEtRealites.pdf" target="_blank" rel="noopener">téléchargez-le en format PDF</a>.
+                </p>
             </div>
         </div>
 
@@ -930,52 +796,12 @@
                 <span>⬇️</span>Fiche Pédagogique RIASEC.pdf
             </button>
             <div class="activity-content">
-                <div class="activity-section">
-                    <h3>Objectifs pédagogiques</h3>
-                    <ul>
-                        <li>Comprendre les six dimensions du modèle RIASEC.</li>
-                        <li>Identifier son profil dominant à partir d'un questionnaire ou d'activités pratiques.</li>
-                        <li>Relier son profil aux secteurs et métiers présentés sur la plateforme.</li>
-                    </ul>
+                <div class="pdf-viewer">
+                    <iframe src="ActivteORI/RIASEC/FichePedagogiqueRIASEC.pdf" title="Fiche pédagogique RIASEC" loading="lazy"></iframe>
                 </div>
-                <div class="activity-section">
-                    <h3>Compétences visées</h3>
-                    <ul>
-                        <li>Compétence 1&nbsp;: Se connaître en explorant ses intérêts.</li>
-                        <li>Compétence 2&nbsp;: Mettre en relation ses intérêts avec des environnements de travail.</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Durée</h3>
-                    <ul>
-                        <li>1 période de 60 minutes.</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Matériel requis</h3>
-                    <ul>
-                        <li>Questionnaire RIASEC (imprimé ou en ligne).</li>
-                        <li>Profil des secteurs et métiers liés à chaque type RIASEC.</li>
-                        <li>Crayons, surligneurs, feuilles de synthèse.</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Déroulement proposé</h3>
-                    <ol>
-                        <li><strong>Présentation (15 min)</strong>&nbsp;: Explication du modèle RIASEC et exemples de métiers associés.</li>
-                        <li><strong>Questionnaire (20 min)</strong>&nbsp;: Les élèves répondent au questionnaire et compilent leurs résultats.</li>
-                        <li><strong>Analyse (15 min)</strong>&nbsp;: Mise en relation des lettres obtenues avec les secteurs de la plateforme.</li>
-                        <li><strong>Plan d'action (10 min)</strong>&nbsp;: Chaque élève identifie deux pistes d'exploration à poursuivre.</li>
-                    </ol>
-                </div>
-                <div class="activity-section">
-                    <h3>Évaluation</h3>
-                    <ul>
-                        <li>Complétion du questionnaire.</li>
-                        <li>Pertinence des liens faits entre le profil et les métiers ciblés.</li>
-                        <li>Engagement dans l'élaboration du plan d'action.</li>
-                    </ul>
-                </div>
+                <p class="pdf-viewer-fallback">
+                    Si le document ne s'affiche pas, <a href="ActivteORI/RIASEC/FichePedagogiqueRIASEC.pdf" target="_blank" rel="noopener">téléchargez-le en format PDF</a>.
+                </p>
             </div>
         </div>
 
@@ -988,54 +814,12 @@
                 <span>⬇️</span>Fiche Pédagogique 360FP.pdf
             </button>
             <div class="activity-content">
-                <div class="activity-section">
-                    <h3>Objectifs pédagogiques</h3>
-                    <ul>
-                        <li>Vivre une immersion virtuelle dans différents environnements de travail.</li>
-                        <li>Repérer les éléments observés qui rejoignent ses intérêts, ses forces et ses valeurs.</li>
-                        <li>Comparer les conditions et exigences des métiers explorés pour alimenter son projet.</li>
-                    </ul>
+                <div class="pdf-viewer">
+                    <iframe src="ActivteORI/360FP/FichePedagogique360FP.pdf" title="Fiche pédagogique FP360" loading="lazy"></iframe>
                 </div>
-                <div class="activity-section">
-                    <h3>Compétences visées</h3>
-                    <ul>
-                        <li>Compétence 1&nbsp;: Se connaître pour faire des choix éclairés.</li>
-                        <li>Compétence 2&nbsp;: Explorer le monde scolaire et professionnel.</li>
-                        <li>Compétence 3&nbsp;: Communiquer sa réflexion et ses découvertes.</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Durée</h3>
-                    <ul>
-                        <li>1 période de 60 minutes.</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Matériel requis</h3>
-                    <ul>
-                        <li>Visionneuses 360° (casques VR ou lunettes en carton) pour la classe.</li>
-                        <li>Appareils numériques avec accès aux vidéos FP360.</li>
-                        <li>Écouteurs individuels.</li>
-                        <li>Fiche d'observation FP360 (format papier ou numérique).</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Déroulement proposé</h3>
-                    <ol>
-                        <li><strong>Introduction (10 min)</strong>&nbsp;: Présentation de l'outil FP360 et discussion sur les métiers qui seront visités virtuellement.</li>
-                        <li><strong>Immersion (25 min)</strong>&nbsp;: Les élèves visionnent deux à trois capsules 360° en prenant des notes sur leurs observations.</li>
-                        <li><strong>Analyse guidée (15 min)</strong>&nbsp;: En dyades, ils comparent leurs notes et identifient les compétences observées dans chaque milieu.</li>
-                        <li><strong>Retour collectif (10 min)</strong>&nbsp;: Mise en commun des découvertes et liens avec les parcours de formation possibles.</li>
-                    </ol>
-                </div>
-                <div class="activity-section">
-                    <h3>Évaluation</h3>
-                    <ul>
-                        <li>Fiche d'observation complétée et remise.</li>
-                        <li>Qualité des liens faits entre les métiers observés et son profil personnel.</li>
-                        <li>Participation active aux échanges collectifs.</li>
-                    </ul>
-                </div>
+                <p class="pdf-viewer-fallback">
+                    Si le document ne s'affiche pas, <a href="ActivteORI/360FP/FichePedagogique360FP.pdf" target="_blank" rel="noopener">téléchargez-le en format PDF</a>.
+                </p>
             </div>
         </div>
 
@@ -1048,253 +832,19 @@
                 <span>⬇️</span>Fiche Pédagogique Système Scolaire.pdf
             </button>
             <div class="activity-content">
-                <div class="activity-section">
-                    <h3>Objectifs pédagogiques</h3>
-                    <ul>
-                        <li>Comprendre les différentes voies de formation au Québec après le secondaire.</li>
-                        <li>Distinguer les parcours liés aux métiers présentés sur la plateforme.</li>
-                        <li>Élaborer un plan personnel de cheminement scolaire.</li>
-                    </ul>
+                <div class="pdf-viewer">
+                    <iframe src="ActivteORI/Systeme-Scolaire/FichePedagogiqueSystemeScolaire.pdf" title="Fiche pédagogique Système scolaire" loading="lazy"></iframe>
                 </div>
-                <div class="activity-section">
-                    <h3>Compétences visées</h3>
-                    <ul>
-                        <li>Compétence 2&nbsp;: Explorer le système scolaire et professionnel.</li>
-                        <li>Compétence 3&nbsp;: Planifier ses prochaines étapes de formation.</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Durée</h3>
-                    <ul>
-                        <li>2 périodes de 60 minutes.</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Matériel requis</h3>
-                    <ul>
-                        <li>Schémas du système scolaire québécois.</li>
-                        <li>Fiches descriptives des programmes (DEP, ASP, DEC, etc.).</li>
-                        <li>Tableau interactif ou projecteur.</li>
-                    </ul>
-                </div>
-                <div class="activity-section">
-                    <h3>Déroulement proposé</h3>
-                    <ol>
-                        <li><strong>Présentation (20 min)</strong>&nbsp;: Animation interactive pour présenter les différentes voies de formation.</li>
-                        <li><strong>Étude de cas (40 min)</strong>&nbsp;: En équipes, les élèves reçoivent des profils fictifs et doivent proposer un cheminement adapté.</li>
-                        <li><strong>Recherche individuelle (30 min)</strong>&nbsp;: Chaque élève identifie le parcours qui correspond à ses objectifs et complète une fiche de planification.</li>
-                        <li><strong>Retour collectif (30 min)</strong>&nbsp;: Discussion sur les obstacles possibles et les ressources disponibles.</li>
-                    </ol>
-                </div>
-                <div class="activity-section">
-                    <h3>Évaluation</h3>
-                    <ul>
-                        <li>Analyse des études de cas.</li>
-                        <li>Pertinence du plan personnel rédigé.</li>
-                        <li>Participation aux échanges collectifs.</li>
-                    </ul>
-                </div>
+                <p class="pdf-viewer-fallback">
+                    Si le document ne s'affiche pas, <a href="ActivteORI/Systeme-Scolaire/FichePedagogiqueSystemeScolaire.pdf" target="_blank" rel="noopener">téléchargez-le en format PDF</a>.
+                </p>
             </div>
         </div>
 
 
     </div>
 
-    <div id="pdf-export-container" class="pdf-export-container"></div>
-
-    <!-- Contenu Markdown intégré pour le téléchargement hors ligne -->
-    <script type="text/plain" id="markdown-mon-avatar">
-# Activité Mon avatar
-
-## Objectifs pédagogiques
-- Amener l'élève à dresser un portrait de ses forces, intérêts et valeurs.
-- Favoriser l'expression de soi par un médium créatif.
-- Relier les traits personnels aux exigences des métiers explorés.
-
-## Compétences visées
-- Compétence 1 : Se connaître pour faire des choix éclairés.
-- Compétence 3 : Communiquer sa démarche d'orientation.
-
-## Durée
-- 1 période de 75 minutes.
-
-## Matériel requis
-- Ordinateurs ou tablettes avec l'application de création d'avatar.
-- Fiche réflexive imprimée ou numérique.
-- Casques d'écoute (optionnel).
-
-## Déroulement proposé
-1. **Introduction (10 min)** : Discussion sur l'importance de se connaître avant d'explorer les métiers.
-2. **Création de l'avatar (30 min)** : Les élèves conçoivent un avatar qui illustre leurs forces et leurs intérêts.
-3. **Analyse guidée (20 min)** : À partir d'une grille fournie, ils associent chaque élément choisi à un atout personnel.
-4. **Partage (15 min)** : Présentation de l'avatar à un pair et rétroaction constructive.
-
-## Évaluation
-- Grille d'autoévaluation sur la connaissance de soi.
-- Qualité des liens établis entre l'avatar et les forces personnelles.
-    </script>
-
-    <script type="text/plain" id="markdown-20t1-secteurs">
-# Activité 20T1 secteurs
-
-## Objectifs pédagogiques
-- Explorer les secteurs de formation professionnelle offerts dans la région.
-- Relier les secteurs d'intérêt aux talents et aux aspirations des élèves.
-- Développer la capacité à utiliser des outils numériques de recherche d'information.
-
-## Compétences visées
-- Compétence 1 : Se connaître et explorer le monde du travail.
-- Compétence 2 : S'orienter en utilisant des ressources numériques fiables.
-
-## Durée
-- 2 périodes de 60 minutes.
-
-## Matériel requis
-- Appareil numérique (ordinateur ou tablette) avec accès à Internet.
-- Fiches de prise de notes pour chaque secteur.
-- Tableau ou support collaboratif en ligne (ex. : Jamboard, Padlet).
-
-## Déroulement proposé
-1. **Mise en situation (10 min)** : Présenter les secteurs de formation disponibles sur la plateforme et rappeler les liens avec le projet personnel de l'élève.
-2. **Exploration guidée (40 min)** : En équipes, les élèves consultent les ressources en ligne et remplissent leur fiche sectorielle.
-3. **Mise en commun (20 min)** : Chaque équipe partage un secteur découvert et souligne trois faits marquants.
-4. **Retour réflexif (10 min)** : Les élèves identifient les secteurs qui les interpellent et justifient leur choix dans leur journal de bord.
-
-## Évaluation
-- Observation des échanges durant l'exploration.
-- Qualité des fiches remplies.
-- Autoévaluation des apprentissages.
-    </script>
-
-    <script type="text/plain" id="markdown-mythes-et-realites">
-# Activité Mythes et réalités
-
-## Objectifs pédagogiques
-- Démystifier des croyances entourant la formation professionnelle et les métiers.
-- Développer l'esprit critique face aux sources d'information.
-- Encourager les échanges et l'écoute active au sein du groupe.
-
-## Compétences visées
-- Compétence 2 : Explorer le monde scolaire et professionnel.
-- Compétence 3 : Construire son plan d'action professionnel.
-
-## Durée
-- 2 périodes de 50 minutes.
-
-## Matériel requis
-- Cartes « mythe ou réalité » imprimées ou numériques.
-- Accès à des ressources de validation (sites Web, fiches métiers, témoignages vidéo).
-- Tableau blanc ou outil numérique collaboratif.
-
-## Déroulement proposé
-1. **Activation des connaissances (10 min)** : Brainstorming sur les idées préconçues à propos de la formation professionnelle.
-2. **Atelier en équipes (40 min)** : Chaque équipe pige des cartes et détermine si l'énoncé est un mythe ou une réalité en justifiant sa réponse avec des sources.
-3. **Plénière (30 min)** : Mise en commun et rectification des mythes les plus persistants.
-4. **Synthèse individuelle (20 min)** : Les élèves rédigent trois apprentissages clés et une question qu'ils souhaitent approfondir.
-
-## Évaluation
-- Qualité des justifications présentées.
-- Participation active aux discussions.
-- Pertinence de la synthèse individuelle.
-    </script>
-
-    <script type="text/plain" id="markdown-riasec">
-# Activité RIASEC
-
-## Objectifs pédagogiques
-- Comprendre les six dimensions du modèle RIASEC.
-- Identifier son profil dominant à partir d'un questionnaire ou d'activités pratiques.
-- Relier son profil aux secteurs et métiers présentés sur la plateforme.
-
-## Compétences visées
-- Compétence 1 : Se connaître en explorant ses intérêts.
-- Compétence 2 : Mettre en relation ses intérêts avec des environnements de travail.
-
-## Durée
-- 1 période de 60 minutes.
-
-## Matériel requis
-- Questionnaire RIASEC (imprimé ou en ligne).
-- Profil des secteurs et métiers liés à chaque type RIASEC.
-- Crayons, surligneurs, feuilles de synthèse.
-
-## Déroulement proposé
-1. **Présentation (15 min)** : Explication du modèle RIASEC et exemples de métiers associés.
-2. **Questionnaire (20 min)** : Les élèves répondent au questionnaire et compilent leurs résultats.
-3. **Analyse (15 min)** : Mise en relation des lettres obtenues avec les secteurs de la plateforme.
-4. **Plan d'action (10 min)** : Chaque élève identifie deux pistes d'exploration à poursuivre.
-
-## Évaluation
-- Complétion du questionnaire.
-- Pertinence des liens faits entre le profil et les métiers ciblés.
-- Engagement dans l'élaboration du plan d'action.
-    </script>
-
-    <script type="text/plain" id="markdown-fp360">
-# Activité FP360
-
-## Objectifs pédagogiques
-- Vivre une immersion virtuelle dans différents environnements de travail.
-- Repérer les éléments observés qui rejoignent ses intérêts, ses forces et ses valeurs.
-- Comparer les conditions et exigences des métiers explorés pour alimenter son projet d'orientation.
-
-## Compétences visées
-- Compétence 1 : Se connaître pour faire des choix éclairés.
-- Compétence 2 : Explorer le monde scolaire et professionnel.
-- Compétence 3 : Communiquer sa réflexion et ses découvertes.
-
-## Durée
-- 1 période de 60 minutes.
-
-## Matériel requis
-- Visionneuses 360° (casques VR ou lunettes en carton).
-- Appareils numériques avec accès aux vidéos FP360.
-- Écouteurs individuels.
-- Fiche d'observation FP360 (papier ou numérique).
-
-## Déroulement proposé
-1. **Introduction (10 min)** : Présentation de l'outil FP360 et des métiers qui seront visités virtuellement.
-2. **Immersion (25 min)** : Visionnement de deux à trois capsules 360° en remplissant la fiche d'observation.
-3. **Analyse guidée (15 min)** : Discussion en dyades pour comparer les observations et dégager les compétences mobilisées.
-4. **Retour collectif (10 min)** : Mise en commun des découvertes et liens avec les parcours de formation professionnelle.
-
-## Évaluation
-- Fiche d'observation complétée et remise.
-- Qualité des liens faits entre les métiers observés et son profil personnel.
-- Participation active aux échanges collectifs.
-    </script>
-
-    <script type="text/plain" id="markdown-systeme-scolaire">
-# Activité Système scolaire
-
-## Objectifs pédagogiques
-- Comprendre les différentes voies de formation au Québec après le secondaire.
-- Distinguer les parcours liés aux métiers présentés sur la plateforme.
-- Élaborer un plan personnel de cheminement scolaire.
-
-## Compétences visées
-- Compétence 2 : Explorer le système scolaire et professionnel.
-- Compétence 3 : Planifier ses prochaines étapes de formation.
-
-## Durée
-- 2 périodes de 60 minutes.
-
-## Matériel requis
-- Schémas du système scolaire québécois.
-- Fiches descriptives des programmes (DEP, ASP, DEC, etc.).
-- Tableau interactif ou projecteur.
-
-## Déroulement proposé
-1. **Présentation (20 min)** : Animation interactive pour présenter les différentes voies de formation.
-2. **Étude de cas (40 min)** : En équipes, les élèves reçoivent des profils fictifs et doivent proposer un cheminement adapté.
-3. **Recherche individuelle (30 min)** : Chaque élève identifie le parcours qui correspond à ses objectifs et complète une fiche de planification.
-4. **Retour collectif (30 min)** : Discussion sur les obstacles possibles et les ressources disponibles.
-
-## Évaluation
-- Analyse des études de cas.
-- Pertinence du plan personnel rédigé.
-- Participation aux échanges collectifs.
-    </script>
+    <!-- Visualisation PDF intégrée -->
 
     <script>
         // Configuration globale
@@ -1313,57 +863,36 @@
 
         const activityPdfConfig = {
             "mon-avatar": {
-                markdownPath: "ActivteORI/Mon-Avatar/FichePedagogiqueMonAvatar.md",
                 pdfPath: "ActivteORI/Mon-Avatar/FichePedagogiqueMonAvatar.pdf",
                 filename: "Activite_Mon_avatar.pdf",
-                title: "Activité Mon avatar",
-                inlineMarkdownId: "markdown-mon-avatar"
+                title: "Activité Mon avatar"
             },
             "20t1-secteurs": {
-                markdownPath: "ActivteORI/20T1-secteurs/FichePedagogique20T1secteurs.md",
                 pdfPath: "ActivteORI/20T1-secteurs/FichePedagogique20T1secteurs.pdf",
                 filename: "Activite_20T1_secteurs.pdf",
-                title: "Activité 20T1 secteurs",
-                inlineMarkdownId: "markdown-20t1-secteurs"
+                title: "Activité 20T1 secteurs"
             },
             "mythes-et-realites": {
-                markdownPath: "ActivteORI/Mythes-Et-Realites/FichePedagogiqueMythesEtRealites.md",
                 pdfPath: "ActivteORI/Mythes-Et-Realites/FichePedagogiqueMythesEtRealites.pdf",
                 filename: "Activite_Mythes_et_realites.pdf",
-                title: "Activité Mythes et réalités",
-                inlineMarkdownId: "markdown-mythes-et-realites"
+                title: "Activité Mythes et réalités"
             },
             "riasec": {
-                markdownPath: "ActivteORI/RIASEC/FichePedagogiqueRIASEC.md",
                 pdfPath: "ActivteORI/RIASEC/FichePedagogiqueRIASEC.pdf",
                 filename: "Activite_RIASEC.pdf",
-                title: "Activité RIASEC",
-                inlineMarkdownId: "markdown-riasec"
+                title: "Activité RIASEC"
             },
             "fp360": {
-                markdownPath: "ActivteORI/360FP/FichePedagogique360FP.md",
                 pdfPath: "ActivteORI/360FP/FichePedagogique360FP.pdf",
                 filename: "Activite_FP360.pdf",
-                title: "Activité FP360",
-                inlineMarkdownId: "markdown-fp360"
+                title: "Activité FP360"
             },
             "systeme-scolaire": {
-                markdownPath: "ActivteORI/Systeme-Scolaire/FichePedagogiqueSystemeScolaire.md",
                 pdfPath: "ActivteORI/Systeme-Scolaire/FichePedagogiqueSystemeScolaire.pdf",
                 filename: "Activite_Systeme_scolaire.pdf",
-                title: "Activité Système scolaire",
-                inlineMarkdownId: "markdown-systeme-scolaire"
+                title: "Activité Système scolaire"
             }
         };
-
-        function getInlineMarkdown(config) {
-            if (!config.inlineMarkdownId) {
-                return "";
-            }
-
-            const element = document.getElementById(config.inlineMarkdownId);
-            return element ? element.textContent.trim() : "";
-        }
 
         function resolveAssetPath(relativePath) {
             if (!relativePath) {
