@@ -12,6 +12,11 @@
             box-sizing: border-box;
         }
 
+        :root {
+            color-scheme: light;
+            --pdf-viewer-height: clamp(520px, calc(100vh - 220px), 1200px);
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -312,8 +317,7 @@
 
         .pdf-viewer {
             width: 100%;
-            height: calc(100vh - 180px);
-            min-height: 600px;
+            height: var(--pdf-viewer-height);
             margin-top: 20px;
             border-radius: 15px;
             overflow: hidden;
@@ -329,8 +333,7 @@
 
         @media (max-width: 768px) {
             .pdf-viewer {
-                height: calc(100vh - 140px);
-                min-height: 400px;
+                height: var(--pdf-viewer-height);
             }
         }
 
@@ -893,6 +896,52 @@
                 title: "Activité Système scolaire"
             }
         };
+
+        const MIN_PDF_VIEWPORT = 480;
+
+        function computeAvailablePdfHeight() {
+            const nav = document.querySelector('.navbar');
+            const container = document.querySelector('.container');
+
+            const navHeight = nav ? nav.getBoundingClientRect().height : 0;
+            let containerPadding = 0;
+
+            if (container) {
+                const styles = window.getComputedStyle(container);
+                const paddingTop = parseFloat(styles.paddingTop) || 0;
+                const paddingBottom = parseFloat(styles.paddingBottom) || 0;
+                containerPadding = paddingTop + paddingBottom;
+            }
+
+            const viewportHeight = window.visualViewport?.height || window.innerHeight || MIN_PDF_VIEWPORT;
+            const reservedSpace = navHeight + containerPadding + 120;
+            const availableHeight = Math.max(viewportHeight - reservedSpace, MIN_PDF_VIEWPORT);
+
+            return Math.round(availableHeight);
+        }
+
+        function updatePdfViewerHeight() {
+            const computedHeight = computeAvailablePdfHeight();
+            document.documentElement.style.setProperty('--pdf-viewer-height', `${computedHeight}px`);
+        }
+
+        function enhanceEmbeddedPdfSources() {
+            document.querySelectorAll('.pdf-viewer iframe').forEach((iframe) => {
+                const originalSrc = iframe.dataset.originalSrc || iframe.getAttribute('src');
+                if (!originalSrc) {
+                    return;
+                }
+
+                iframe.dataset.originalSrc = originalSrc;
+
+                const [base] = originalSrc.split('#');
+                const params = new URLSearchParams();
+                params.set('view', 'FitH');
+                params.set('zoom', 'page-fit');
+
+                iframe.setAttribute('src', `${base}#${params.toString()}`);
+            });
+        }
 
         function resolveAssetPath(relativePath) {
             if (!relativePath) {
@@ -1773,6 +1822,7 @@ filename: "technicien-en-logistique-du-transport-profil.jpg", video: "https://ww
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            updatePdfViewerHeight();
 
             return false;
         }
@@ -1909,20 +1959,28 @@ filename: "technicien-en-logistique-du-transport-profil.jpg", video: "https://ww
         document.addEventListener('DOMContentLoaded', function() {
             generateSectors();
             loadExcelData(); // Charge automatiquement toutes les données Excel
+            enhanceEmbeddedPdfSources();
+            updatePdfViewerHeight();
         });
 
         // Gestion du redimensionnement
         window.addEventListener('resize', function() {
             const currentTitle = document.querySelector('.navbar-title').textContent;
             if (document.getElementById('metiers-view').style.display === 'block') {
-                const sectorKey = Object.keys(sectorsData).find(key => 
+                const sectorKey = Object.keys(sectorsData).find(key =>
                     sectorsData[key].name.startsWith(currentTitle.replace('...', ''))
                 );
                 if (sectorKey) {
                     updateNavbarTitle(sectorsData[sectorKey].name);
                 }
             }
+            updatePdfViewerHeight();
         });
+
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', updatePdfViewerHeight);
+            window.visualViewport.addEventListener('scroll', updatePdfViewerHeight);
+        }
 /* === Clic sur n'importe quelle carte .metier-card :
    si l'image est un "*-profil.jpg" qui a une propriété `video` dans allMetiersData,
    on ouvre la vidéo YouTube en autoplay dans un nouvel onglet. === */
